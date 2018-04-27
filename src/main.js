@@ -1,8 +1,25 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
 
-Vue.config.productionTip = false
+import VueRouter from "vue-router";
+
+import Contacts from "./pages/Contacts.vue";
+import AddContact from "./pages/AddContact.vue";
+
+Vue.use(VueRouter);
+Vue.config.productionTip = false;
+
+const routes = [
+  { path: "/", redirect: "contacts" },
+  { path: "/contacts", component: Contacts },
+  { path: "/add-contact", component: AddContact }
+];
+
+const router = new VueRouter({
+  routes
+});
 
 new Vue({
+  router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");

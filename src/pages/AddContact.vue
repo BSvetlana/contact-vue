@@ -1,11 +1,13 @@
 <template>
   <div>
-      Add Contact
+    Add Contact
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+
+};
 </script>
 
 <style>

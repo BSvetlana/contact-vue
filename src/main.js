@@ -11,7 +11,8 @@ Vue.config.productionTip = false;
 
 const routes = [
   { path: "/", redirect: "contacts" },
-  { path: "/contacts", component: Contacts },
+  { path: "/contacts", component: Contacts, name: 'contacts' },
+  { path: "/contacts/:id", component: Contacts, name: "contact-details"},
   { path: "/add-contact", component: AddContact }
 ];
 

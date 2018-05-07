@@ -6,7 +6,7 @@
             <router-link class="list-group-item list-group-item-success"
                 tag="button"
                 :to="{name: 'contact-details', params: {id: contact.id}}"
-                
+                exact-active-class="active"
                 v-for="(contact,key) in contacts"
                 :key="key">
                 <b>{{contact.name}}</b>
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style>
-
+.list-group-item {
+  background-color: skyblue;
+}
 </style>

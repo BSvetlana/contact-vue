@@ -3,10 +3,11 @@
     <div class="container">
       <div class="col-8">
             <h2 class="text-center">Contact Form</h2>
-            <form @submit.prevent="onSubmit">
+            <form 
+                   v-validate="validationRules">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input v-focus-on type="text" class="form-control" id="first_name" placeholder="Enter First Name" v-model="newContact.first_name">
+                    <input v-focus-on  type="text" class="form-control" id="first_name" placeholder="Enter First Name" v-model="newContact.first_name">
                 </div>
                 <div class="form-group">
                     <label for="last_name">Last Name</label>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="newContact.email">
+                    <input type="text" class="form-control" id="email" placeholder="Enter email" v-model="newContact.email">
                 </div>
                 <div class="form-group">
                     <label for="number">Number</label>
@@ -40,8 +41,9 @@ export default {
         email: '',
         number: ''
       },
-      focus: false
-      
+      validationRules: {
+        email: ['required','email']
+      }
     }
   },
   created() {
@@ -63,7 +65,7 @@ export default {
         })
     },
     addContact() {
-      contacts.add(this.newContact) 
+      contact.add(this.newContact) 
         .then(() => {
           this.$router.push('/contacts')
         })

@@ -6,9 +6,9 @@
             <form @submit.prevent="onSubmit">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" v-model="newContact.first_name">
+                    <input v-focus-on type="text" class="form-control" id="first_name" placeholder="Enter First Name" v-model="newContact.first_name">
                 </div>
-                                <div class="form-group">
+                <div class="form-group">
                     <label for="last_name">Last Name</label>
                     <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name" v-model="newContact.last_name">
                 </div>
@@ -22,6 +22,7 @@
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
+
         </div>
   </div>
   </div> 
@@ -38,7 +39,9 @@ export default {
         last_name: '',
         email: '',
         number: ''
-      }
+      },
+      focus: false
+      
     }
   },
   created() {
@@ -55,13 +58,13 @@ export default {
     },
     editContact() {
       contact.edit(this.newContact)
-        .then((response) => {
+        .then(() => {
           this.$router.push('/contacts')
         })
     },
     addContact() {
       contacts.add(this.newContact) 
-        .then((response) => {
+        .then(() => {
           this.$router.push('/contacts')
         })
     }

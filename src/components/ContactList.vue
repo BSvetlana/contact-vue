@@ -29,7 +29,7 @@ export default {
 
     deleteContact(id) {
       contact.delete(id)
-        .then((response) => {
+        .then(() => {
           this.$emit('contactDelete',id)
         })
     }

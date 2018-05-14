@@ -5,11 +5,12 @@ import VueRouter from "vue-router";
 
 import Contacts from "./pages/Contacts.vue";
 import AddContact from "./pages/AddContact.vue";
+import MyDirectives from './plagins/MyDirectives'
 
 Vue.use(VueRouter);
+Vue.use(MyDirectives)
+
 Vue.config.productionTip = false;
-
-
 
 const routes = [
   { path: "/", redirect: "contacts" },

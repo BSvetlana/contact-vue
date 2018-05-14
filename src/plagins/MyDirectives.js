@@ -1,3 +1,17 @@
+const RULES = {
+    REQUIRED: 'required',
+    NUMBER: 'number',
+    EMAIL: 'email'
+}
+const MESSAGES_CLASSNAME = "validator-messages";
+
+const removeMessageElement = (element) => {
+
+    let oldMessageElement = element.querySelector(`#${MESSAGES_CLASSNAME}`)
+    if (oldMessageElement) {
+        oldMessageElement.remove()
+    }
+}
 const MyDirectives = {
     install: function(Vue) {
         Vue.directive('focusOn', {
@@ -15,23 +29,30 @@ const MyDirectives = {
 
         Vue.directive('validate', {
             inserted: function(element,binding) {
-                const RULES = {
-                    REQUIRED: 'required',
-                    NUMBER: 'number',
-                    EMAIL: 'email'
-                }
-
-                let validationRules = binding.value
+                 let validationRules = binding.value
 
                 element.addEventListener('submit', (event) => {
                     event.preventDefault();
                     console.log('event', event, validationRules)
 
                         Object.keys(validationRules).forEach(key => {
-                        if (validationRules[key].indexOf(RULES.REQUIRED) > -1){
+                        
+                            let input = element.querySelector(`#${key}`)
+                            if (!input) {
+                                throw new Error(`Element validation rule ${key} not found`)
+                            }
+
+
+                        if (validationRules[key].indexOf(RULES.REQUIRED) > -1 && !input.value.length){
                             let messageElement = document.createElement('div')
+
+                            messageElement.id = MESSAGES_CLASSNAME;
+                            removeMessageElement(element)
+
                             messageElement.innerHTML = `This field ${key} is required`;
                             element.appendChild(messageElement)
+                        } else {
+                            removeMessageElement(element)
                         }
                     })
                     

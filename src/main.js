@@ -9,11 +9,13 @@ import AddContact from "./pages/AddContact.vue";
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
+
+
 const routes = [
   { path: "/", redirect: "contacts" },
   { path: "/contacts", component: Contacts, name: 'contacts' },
   { path: "/contacts/:id", component: Contacts, name: "contact-details"},
-  { path: "/add-contact", component: AddContact }
+  { path: "/add-contact", component: AddContact, name: 'add-contact' }
 ];
 
 const router = new VueRouter({

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container mt-4">
       <div class="col-8">
             <h2 class="text-center">Contact Form</h2>
             <form 
-                   v-validate="validationRules">
+                   v-validate="validationConfig">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
                     <input v-focus-on  type="text" class="form-control" id="first_name" placeholder="Enter First Name" v-model="newContact.first_name">
@@ -21,7 +21,7 @@
                     <label for="number">Number</label>
                     <input type="text" class="form-control" id="number" placeholder="Enter number" v-model="newContact.number">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success mb-2" style="background-color: skyblue; color:darkslategray">Submit</button>
             </form>
 
         </div>
@@ -41,9 +41,15 @@ export default {
         email: '',
         number: ''
       },
-      validationRules: {
+      validationConfig:{
+              validationRules: {
         email: ['required','email']
+      },
+      submitCallback: () => {
+        this.onSubmit()
       }
+      }
+
     }
   },
   created() {
